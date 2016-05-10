@@ -1,0 +1,2 @@
+# JCParallaxHeaderView
+JCParallaxHeaderView is 
