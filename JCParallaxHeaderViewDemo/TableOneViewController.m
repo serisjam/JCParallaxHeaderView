@@ -32,6 +32,7 @@
     
     [self.tableView.parallaxView setStickView:titleLabel withStickPosition:JCStickPositionTop withHeight:20.0f];
     
+    [_progressView setLineWidth:2.0f];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

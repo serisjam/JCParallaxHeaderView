@@ -24,6 +24,7 @@
     
     if (self) {
         _isAnimating = NO;
+        self.lineWidth = 1.0f;
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterBackground) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillBecomeActive) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -38,6 +39,7 @@
     
     if (self) {
         _isAnimating = NO;
+        self.lineWidth = 1.0f;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterBackground) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillBecomeActive) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -75,7 +77,7 @@
     _progressBackgroundLayer.strokeColor = self.backGroundProgressColor.CGColor;
     _progressBackgroundLayer.fillColor = [UIColor clearColor].CGColor;
     _progressBackgroundLayer.lineCap = kCALineCapRound;
-    _progressBackgroundLayer.lineWidth = 1.f;
+    _progressBackgroundLayer.lineWidth = self.lineWidth;
     _progressBackgroundLayer.allowsEdgeAntialiasing = YES;
     [self.layer addSublayer:_progressBackgroundLayer];
     
@@ -84,7 +86,8 @@
     self.cycleLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     self.cycleLayer.strokeColor = self.loadingTintColor.CGColor;
     self.cycleLayer.fillColor = [UIColor clearColor].CGColor;
-    self.cycleLayer.lineWidth = 1.f;
+    self.cycleLayer.lineCap = kCALineCapRound;
+    self.cycleLayer.lineWidth = self.lineWidth;
     self.cycleLayer.allowsEdgeAntialiasing = YES;
     
     self.cyclePath = [UIBezierPath bezierPathWithArcCenter:center
@@ -123,6 +126,12 @@
 }
 
 #pragma mark self public methods
+
+- (void)setLineWidth:(CGFloat)lineWidth {
+    _lineWidth = lineWidth;
+    _progressBackgroundLayer.lineWidth = _lineWidth;
+    _cycleLayer.lineWidth = _lineWidth;
+}
 
 - (void)setProgress:(CGFloat)progress {
     

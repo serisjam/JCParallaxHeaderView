@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UIColor *loadingTintColor;
 @property (nonatomic, assign) CGFloat progress;
 
+@property (nonatomic, assign) CGFloat lineWidth;
+
 - (void)startAnimating;
 - (void)stopAnimating;
 
