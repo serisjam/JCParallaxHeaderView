@@ -204,6 +204,12 @@ static char JCParallaxHeader;
 
 @implementation UIScrollView (JCParallaxHeader)
 
+- (void)dealloc
+{
+	[self removeObserver:self.parallaxView forKeyPath:JCParallaxKeyPathContentOffset];
+	[self removeObserver:self.parallaxView forKeyPath:JCParallaxKeyPathContentInset];
+}
+
 - (void)setParallaxView:(UIView *)parallaxView withParallaxModel:(JCParallaxModel)parallaxModel withWidth:(CGFloat)width andHeight:(CGFloat)height {
     
     self.parallaxView = [[JCParallaxView alloc] initWithContentView:parallaxView  inScrollView:self withParallaxModel:parallaxModel withWidth:width andHeight:height];
